@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4EFB5757-F1B4-4E57-99ED-DBFB57C7E991}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>OSPSuite.TeXReporting</RootNamespace>
+    <AssemblyName>OSPSuite.TeXReporting</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\OSPSuite.TeXReporting.xml</DocumentationFile>
+    <NoWarn>1591</NoWarn>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="OSPSuite.Utility, Version=2.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\OSPSuite.Utility.2.0.0.1\lib\net45\OSPSuite.Utility.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\SolutionInfo.cs">
+      <Link>Properties\SolutionInfo.cs</Link>
+    </Compile>
+    <Compile Include="ArtifactsManager.cs" />
+    <Compile Include="Builder\BarPlotTeXBuilder.cs" />
+    <Compile Include="Builder\BuildTracker.cs" />
+    <Compile Include="Builder\ChunkBuilderNotFoundException.cs" />
+    <Compile Include="Builder\DataTableTeXBuilder.cs" />
+    <Compile Include="Builder\FigureTeXBuilder.cs" />
+    <Compile Include="Builder\GroupPlotTeXBuilder.cs" />
+    <Compile Include="Builder\InLandscapeTeXBuilder.cs" />
+    <Compile Include="Builder\InlineImageTeXBuilder.cs" />
+    <Compile Include="Builder\ITeXChunkBuilder.cs" />
+    <Compile Include="Builder\LineBreakTeXBuilder.cs" />
+    <Compile Include="Builder\ListTeXBuilder.cs" />
+    <Compile Include="Builder\ParTeXBuilder.cs" />
+    <Compile Include="Builder\PivotTableTeXBuilder.cs" />
+    <Compile Include="Builder\PlotTeXBuilder.cs" />
+    <Compile Include="Builder\PlotThreeOrdinatesTeXBuilder.cs" />
+    <Compile Include="Builder\PlotTwoOrdinatesTeXBuilder.cs" />
+    <Compile Include="Builder\ReferenceTeXBuilder.cs" />
+    <Compile Include="Builder\SideBySideTeXBuilder.cs" />
+    <Compile Include="Builder\StringArrayTeXBuilder.cs" />
+    <Compile Include="Builder\StringBuilderTeXBuilder.cs" />
+    <Compile Include="Builder\StringTeXBuilder.cs" />
+    <Compile Include="Builder\StructureElementTeXBuilder.cs" />
+    <Compile Include="Builder\ITeXBuilderRepository.cs" />
+    <Compile Include="Builder\TableTeXBuilder.cs" />
+    <Compile Include="Builder\ITeXBuilder.cs" />
+    <Compile Include="Builder\BuilderNotFoundException.cs" />
+    <Compile Include="Builder\SimpleTableTeXBuilder.cs" />
+    <Compile Include="Builder\TextBoxTeXBuilder.cs" />
+    <Compile Include="Builder\TextTeXBuilder.cs" />
+    <Compile Include="BuildSettings.cs" />
+    <Compile Include="Data\DataColumnExtensions.cs" />
+    <Compile Include="Events\ReportCreationFinishedEvent.cs" />
+    <Compile Include="Events\ReportCreationStartedEvent.cs" />
+    <Compile Include="ImageConverter.cs" />
+    <Compile Include="Items\Attachement.cs" />
+    <Compile Include="Items\BarPlot.cs" />
+    <Compile Include="Items\BaseItem.cs" />
+    <Compile Include="Items\BasePlot.cs" />
+    <Compile Include="Items\Chapter.cs" />
+    <Compile Include="Items\Figure.cs" />
+    <Compile Include="Items\GroupPlot.cs" />
+    <Compile Include="Items\IBasePlot.cs" />
+    <Compile Include="Items\ILandscapeDepending.cs" />
+    <Compile Include="Items\InlineImage.cs" />
+    <Compile Include="Items\IPlot.cs" />
+    <Compile Include="Items\IReferenceable.cs" />
+    <Compile Include="Items\ICaptionItem.cs" />
+    <Compile Include="Items\InLandscape.cs" />
+    <Compile Include="Items\LineBreak.cs" />
+    <Compile Include="Items\List.cs" />
+    <Compile Include="Items\Par.cs" />
+    <Compile Include="Items\Plot.cs" />
+    <Compile Include="Items\PlotThreeOrdinates.cs" />
+    <Compile Include="Items\PlotTwoOrdinates.cs" />
+    <Compile Include="Items\SideBySide.cs" />
+    <Compile Include="Items\SubParagraph.cs" />
+    <Compile Include="Items\Table.cs" />
+    <Compile Include="Items\Paragraph.cs" />
+    <Compile Include="Items\Part.cs" />
+    <Compile Include="Items\PivotTable.cs" />
+    <Compile Include="Items\Reference.cs" />
+    <Compile Include="Items\Section.cs" />
+    <Compile Include="Items\SimpleTable.cs" />
+    <Compile Include="Items\StructureElement.cs" />
+    <Compile Include="Items\SubSection.cs" />
+    <Compile Include="Items\SubSubSection.cs" />
+    <Compile Include="Items\Text.cs" />
+    <Compile Include="Items\TextBox.cs" />
+    <Compile Include="ReportCreator.cs" />
+    <Compile Include="ReportingRegister.cs" />
+    <Compile Include="ReportSettings.cs" />
+    <Compile Include="TeXReportCompilerException.cs" />
+    <Compile Include="TeX\Constants.cs" />
+    <Compile Include="TeX\PGFPlots\AxisOptions.cs" />
+    <Compile Include="TeX\CompilerConfiguration.cs" />
+    <Compile Include="TeX\Converter\DefaultConverter.cs" />
+    <Compile Include="TeX\Converter\FormulaConverter.cs" />
+    <Compile Include="TeX\Converter\TeXConverter.cs" />
+    <Compile Include="TeX\Converter\ConverterWithIndices.cs" />
+    <Compile Include="TeX\Converter\NoConverter.cs" />
+    <Compile Include="TeX\EquationWriter.cs" />
+    <Compile Include="TeX\FigureWriter.cs" />
+    <Compile Include="TeX\ListWriter.cs" />
+    <Compile Include="TeX\Helper.cs" />
+    <Compile Include="ReportCompiler.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TeX\PGFPlots\BarPlotOptions.cs" />
+    <Compile Include="TeX\PGFPlots\BoxPlotPrepared.cs" />
+    <Compile Include="TeX\PGFPlots\Coordinate.cs" />
+    <Compile Include="TeX\PGFPlots\GroupOptions.cs" />
+    <Compile Include="TeX\PGFPlots\LegendOptions.cs" />
+    <Compile Include="TeX\PGFPlots\Plot.cs" />
+    <Compile Include="TeX\PGFPlots\PlotOptions.cs" />
+    <Compile Include="TeX\PGFPlots\PlotWriter.cs" />
+    <Compile Include="TeX\TableWriter.cs" />
+    <Compile Include="TeX\TeXCompiler.cs" />
+    <Compile Include="BuildTrackerFactory.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="OSPSuite.TeXReporting.nuspec" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

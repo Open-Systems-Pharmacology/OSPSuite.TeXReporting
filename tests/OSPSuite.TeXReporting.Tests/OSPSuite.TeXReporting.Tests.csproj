@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BAAB09FC-03C6-4C25-9CA3-5B9476C6E59D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>OSPSuite.TeXReporting.Tests</RootNamespace>
+    <AssemblyName>OSPSuite.TeXReporting.Tests</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Castle.Core, Version=3.3.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Castle.Core.3.3.3\lib\net45\Castle.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Castle.Windsor, Version=3.4.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Castle.Windsor.3.4.0\lib\net45\Castle.Windsor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FakeItEasy, Version=2.3.3.0, Culture=neutral, PublicKeyToken=eff28e2146d5fd2c, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\FakeItEasy.2.3.3\lib\net40\FakeItEasy.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="nunit.framework, Version=3.5.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NUnit.3.5.0\lib\net45\nunit.framework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="OSPSuite.BDDHelper, Version=2.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\OSPSuite.BDDHelper.2.0.0.1\lib\net45\OSPSuite.BDDHelper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="OSPSuite.Utility, Version=2.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\OSPSuite.Utility.2.0.0.1\lib\net45\OSPSuite.Utility.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\SolutionInfo.cs">
+      <Link>Properties\SolutionInfo.cs</Link>
+    </Compile>
+    <Compile Include="ArtifactsManagerSpecs.cs" />
+    <Compile Include="BarPlotSpecs.cs" />
+    <Compile Include="BoxPlotSpecs.cs" />
+    <Compile Include="CastleWindsorContainer.cs" />
+    <Compile Include="ChapterSpecs.cs" />
+    <Compile Include="ComplexReportSpecs.cs" />
+    <Compile Include="ConstantsForSpecs.cs" />
+    <Compile Include="ContextForReporting.cs" />
+    <Compile Include="DataTableSpecs.cs" />
+    <Compile Include="DraftOptionSpecs.cs" />
+    <Compile Include="FigureBuilderSpecs.cs" />
+    <Compile Include="GroupPlotSpecs.cs" />
+    <Compile Include="ListBuilderSpecs.cs" />
+    <Compile Include="LongTableSpecs.cs" />
+    <Compile Include="MasterDetailSpecs.cs" />
+    <Compile Include="ParagraphSpecs.cs" />
+    <Compile Include="PivotTableSpecs.cs" />
+    <Compile Include="PlotsSpecs.cs" />
+    <Compile Include="RangePlotSpecs.cs" />
+    <Compile Include="ReportCreatorSpecs.cs" />
+    <Compile Include="ReportCompilerSpecs.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReportSettingsSpecs.cs" />
+    <Compile Include="ScatterPlotSpecs.cs" />
+    <Compile Include="SideBySideSpecs.cs" />
+    <Compile Include="SimpleTableSpecs.cs" />
+    <Compile Include="StringBuilderSpecs.cs" />
+    <Compile Include="StructureElementBuilderSpecs.cs" />
+    <Compile Include="TableWithTextSpecs.cs" />
+    <Compile Include="TEXBuilderRepositorySpecs.cs" />
+    <Compile Include="TEXDefaultConverterSpecs.cs" />
+    <Compile Include="TEXFormulaConverterSpecs.cs" />
+    <Compile Include="TextSpecs.cs" />
+    <Compile Include="WindsorLifeStyleMapper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\data\figure.png">
+      <Link>figure.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="StandardTemplate.tex" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\OSPSuite.TEXReporting\OSPSuite.TEXReporting.csproj">
+      <Project>{4efb5757-f1b4-4e57-99ed-dbfb57c7e991}</Project>
+      <Name>OSPSuite.TEXReporting</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
