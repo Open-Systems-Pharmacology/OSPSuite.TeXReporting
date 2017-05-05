@@ -6,22 +6,22 @@ using OSPSuite.Utility.Extensions;
 
 namespace OSPSuite.TeXReporting.Builder
 {
-   internal class TextTeXBuilder : TeXChunkBuilder<Text>
+   public abstract class TextTeXBuilder<T> : TeXChunkBuilder<T> where T : Text
    {
       private readonly ITeXBuilderRepository _builderRepository;
 
-      public TextTeXBuilder(ITeXBuilderRepository builderRepository)
+      protected TextTeXBuilder(ITeXBuilderRepository builderRepository)
       {
          _builderRepository = builderRepository;
       }
 
-      public override void Build(Text text, BuildTracker tracker)
+      public override void Build(T text, BuildTracker tracker)
       {
-         base.Build(text,tracker);
+         base.Build(text, tracker);
          tracker.Track(text.Items);
       }
 
-      public override string TeXChunk(Text text)
+      public override string TeXChunk(T text)
       {
          if (string.IsNullOrEmpty(text.Content))
             return string.Empty;
@@ -31,15 +31,15 @@ namespace OSPSuite.TeXReporting.Builder
          {
             newText = text.Content;
             for (var i = 0; i < text.Items.Count; i++)
-               newText = newText.Replace(string.Format("{{{0}}}", i), string.Format("@{0}@", i));
+               newText = newText.Replace($"{{{i}}}", $"@{i}@");
 
             newText = text.Converter.StringToTeX(newText);
-            
+
             for (var i = 0; i < text.Items.Count; i++)
-               newText = newText.Replace(string.Format("@{0}@", i), string.Format("{{{0}}}", i));
+               newText = newText.Replace($"@{i}@", $"{{{i}}}");
 
             var texChunks = new List<object>();
-            text.Items.Each(item=>texChunks.Add(_builderRepository.ChunkFor(item)));
+            text.Items.Each(item => texChunks.Add(_builderRepository.ChunkFor(item)));
 
             newText = string.Format(newText, texChunks.ToArray());
          }
@@ -48,10 +48,10 @@ namespace OSPSuite.TeXReporting.Builder
             newText = text.Converter.StringToTeX(text.Content);
          }
 
-         return alignedText(text.Alignment, styledText(text.FontStyle, newText));
+         return AlignedText(text.Alignment, StyledText(text.FontStyle, newText));
       }
-      
-      private string alignedText(Text.Alignments alignment, string text)
+
+      protected string AlignedText(Text.Alignments alignment, string text)
       {
          var tex = new StringBuilder();
          const string FORMAT = "{0}{1}{2}";
@@ -59,23 +59,22 @@ namespace OSPSuite.TeXReporting.Builder
          {
             case Text.Alignments.centered:
                tex.AppendFormat(FORMAT, Helper.Begin(Helper.Environments.center), text,
-                                Helper.End(Helper.Environments.center));
+                  Helper.End(Helper.Environments.center));
                return tex.ToString();
             case Text.Alignments.flushleft:
                tex.AppendFormat(FORMAT, Helper.Begin(Helper.Environments.flushleft), text,
-                                Helper.End(Helper.Environments.flushleft));
+                  Helper.End(Helper.Environments.flushleft));
                return tex.ToString();
             case Text.Alignments.flushright:
                tex.AppendFormat(FORMAT, Helper.Begin(Helper.Environments.flushright), text,
-                                Helper.End(Helper.Environments.flushright));
+                  Helper.End(Helper.Environments.flushright));
                return tex.ToString();
             default:
                return text;
          }
       }
 
-
-      private string styledText(Text.FontStyles fontStyle, string text)
+      protected string StyledText(Text.FontStyles fontStyle, string text)
       {
          switch (fontStyle)
          {
@@ -88,6 +87,13 @@ namespace OSPSuite.TeXReporting.Builder
             default:
                return text;
          }
+      }
+   }
+
+   public class TextTeXBuilder : TextTeXBuilder<Text>
+   {
+      public TextTeXBuilder(ITeXBuilderRepository builderRepository) : base(builderRepository)
+      {
       }
    }
 }

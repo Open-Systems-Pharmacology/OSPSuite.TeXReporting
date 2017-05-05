@@ -75,11 +75,10 @@ namespace OSPSuite.TeXReporting.TeX.PGFPlots
          {
             var boxOptions = Options.Clone();
             boxOptions.BoxPlotPrepared = null;
-            options = string.Format("{0}, area legend", boxOptions);
+            options = $"{boxOptions}, area legend";
          }
          else if (Options.ShadedErrorBars)
-            options = string.Format("{0}, draw=none, area legend, fill={1}, opacity={2}", Options,
-                                         Options.Color, Options.Opacity);
+            options = $"{Options}, draw=none, area legend, fill={Options.Color}, opacity={Options.Opacity}";
 
 
          text.AppendFormat("\\addlegendimage{{{0}}};\n", options);

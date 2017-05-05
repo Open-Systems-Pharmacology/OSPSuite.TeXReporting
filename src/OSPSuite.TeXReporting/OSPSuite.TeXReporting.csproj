@@ -55,6 +55,7 @@
     <Compile Include="Builder\BarPlotTeXBuilder.cs" />
     <Compile Include="Builder\BuildTracker.cs" />
     <Compile Include="Builder\ChunkBuilderNotFoundException.cs" />
+    <Compile Include="Builder\ColorTextTeXBuilder.cs" />
     <Compile Include="Builder\DataTableTeXBuilder.cs" />
     <Compile Include="Builder\FigureTeXBuilder.cs" />
     <Compile Include="Builder\GroupPlotTeXBuilder.cs" />
@@ -91,6 +92,7 @@
     <Compile Include="Items\BaseItem.cs" />
     <Compile Include="Items\BasePlot.cs" />
     <Compile Include="Items\Chapter.cs" />
+    <Compile Include="Items\ColorText.cs" />
     <Compile Include="Items\Figure.cs" />
     <Compile Include="Items\GroupPlot.cs" />
     <Compile Include="Items\IBasePlot.cs" />

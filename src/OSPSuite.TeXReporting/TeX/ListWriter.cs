@@ -32,22 +32,22 @@ namespace OSPSuite.TeXReporting.TeX
 
       public static string Begin(ListEnvironments environment)
       {
-         return String.Format("\\begin{{{0}}}\n", environment);
+         return $"\\begin{{{environment}}}\n";
       }
 
       public static string End(ListEnvironments environment)
       {
-         return String.Format("\\end{{{0}}}\n", environment);
+         return $"\\end{{{environment}}}\n";
       }
 
       public static string Item(string item)
       {
-         return String.Format("\\item {0}\n", item);
+         return $"\\item {item}\n";
       }
 
       public static string LabelledItem(string label, string item)
       {
-         return String.Format("\\item[{0}] {1}\n", label, item);
+         return $"\\item[{label}] {item}\n";
       }
 
       private static string CreateList(ListEnvironments environment, string[] items)

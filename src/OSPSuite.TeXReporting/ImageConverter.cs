@@ -103,7 +103,7 @@ namespace OSPSuite.TeXReporting
                      UseShellExecute = true,
                      FileName = CompilerConfiguration.MGS,
                      WindowStyle = ProcessWindowStyle.Hidden,
-                     Arguments = String.Format("-sDEVICE={0} -sOutputFile=\"{1}\" -r{2} -q -dBATCH -dNOPAUSE \"{3}\"", getOutputType(imageType), outputFile, resolution, pdfFile),
+                     Arguments = $"-sDEVICE={getOutputType(imageType)} -sOutputFile=\"{outputFile}\" -r{resolution} -q -dBATCH -dNOPAUSE \"{pdfFile}\"",
                      WorkingDirectory = workingDirectory
                   };
 

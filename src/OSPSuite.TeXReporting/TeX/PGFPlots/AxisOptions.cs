@@ -379,7 +379,7 @@ namespace OSPSuite.TeXReporting.TeX.PGFPlots
          if (XTickLabels != null && XTickLabels.Length > 0)
          {
             addSeparator(optionsString);
-            var tickLabels = string.Format("{{{0}}}", string.Join("}, {", _converter.StringToTeX(XTickLabels)));
+            var tickLabels = $"{{{string.Join("}, {", _converter.StringToTeX(XTickLabels))}}}";
             optionsString.AppendFormat(FORMAT_STRING_LABEL, "xticklabels", tickLabels);
          }
          if (!string.IsNullOrEmpty(XGroupLineOffset))
@@ -412,7 +412,7 @@ namespace OSPSuite.TeXReporting.TeX.PGFPlots
          if (YTickLabels != null && YTickLabels.Length > 0)
          {
             addSeparator(optionsString);
-            var tickLabels = string.Format("{{{0}}}", string.Join("}, {", _converter.StringToTeX(YTickLabels)));
+            var tickLabels = $"{{{string.Join("}, {", _converter.StringToTeX(YTickLabels))}}}";
             optionsString.AppendFormat(FORMAT_STRING_LABEL, "yticklabels", tickLabels);
          }
          if (YTickLabelsRotateBy % 360 != 0)
@@ -424,7 +424,7 @@ namespace OSPSuite.TeXReporting.TeX.PGFPlots
          {
             addSeparator(optionsString);
             var ticks = string.Join(",", Array.ConvertAll(YMinorTicks, f => f.ToString(CultureInfo.InvariantCulture)));
-            optionsString.AppendFormat(FORMAT_STRING, "minor ytick", String.Format("{{{0}}}", ticks));
+            optionsString.AppendFormat(FORMAT_STRING, "minor ytick", $"{{{ticks}}}");
          }
          //tick ranges
          if (XTickMax != null)

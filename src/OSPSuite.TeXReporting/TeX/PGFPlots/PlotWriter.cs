@@ -35,11 +35,11 @@ namespace OSPSuite.TeXReporting.TeX.PGFPlots
       private string addLegendEntry(Plot plot)
       {
          if (String.IsNullOrEmpty(plot.LegendEntry)) return String.Empty;
-         return String.Format("\\addlegendentry{{{0}}};\n", _converter.StringToTeX(plot.LegendEntry));
+         return $"\\addlegendentry{{{_converter.StringToTeX(plot.LegendEntry)}}};\n";
       }
       private string defineStyleForLegendRef(string label, string style)
       {
-         return String.Format("\\pgfplotsset{{{0}/.style={{{1}}}}}\n", label, style);
+         return $"\\pgfplotsset{{{label}/.style={{{style}}}}}\n";
       }
 
       private enum Axis
@@ -290,7 +290,7 @@ namespace OSPSuite.TeXReporting.TeX.PGFPlots
          foreach (var color in _colors)
             tex.Append(defineColor(color));
 
-         tex.Append(Helper.Begin(Helper.Environments.groupplot, String.Format("{0},{1}",groupOptions, axisOptions)));
+         tex.Append(Helper.Begin(Helper.Environments.groupplot, $"{groupOptions},{axisOptions}"));
          tex.Append(Helper.LineFeed());
          foreach (var groupPlot in groupPlots)
          {
@@ -405,7 +405,7 @@ namespace OSPSuite.TeXReporting.TeX.PGFPlots
       {
          plots = plots.ToArray();
          axisOptions = getTicksForLogPlots(axisOptions, plots);
-         return picture(axisOptions, plots, string.Format("{0},{1}", barPlotOptions, axisOptions), options);
+         return picture(axisOptions, plots, $"{barPlotOptions},{axisOptions}", options);
       }
 
       /// <summary>
@@ -589,7 +589,7 @@ namespace OSPSuite.TeXReporting.TeX.PGFPlots
 
       private static string defineColor(Color color)
       {
-         return string.Format("\\definecolor{{{0}}}{{RGB}}{{{1},{2},{3}}}\n", color.Name, color.R, color.G, color.B);
+         return $"\\definecolor{{{color.Name}}}{{RGB}}{{{color.R},{color.G},{color.B}}}\n";
       }
    }
 }

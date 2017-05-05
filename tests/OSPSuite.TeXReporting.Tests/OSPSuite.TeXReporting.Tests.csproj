@@ -74,6 +74,7 @@
     <Compile Include="BoxPlotSpecs.cs" />
     <Compile Include="CastleWindsorContainer.cs" />
     <Compile Include="ChapterSpecs.cs" />
+    <Compile Include="ColorTextSpecs.cs" />
     <Compile Include="ComplexReportSpecs.cs" />
     <Compile Include="ConstantsForSpecs.cs" />
     <Compile Include="ContextForReporting.cs" />

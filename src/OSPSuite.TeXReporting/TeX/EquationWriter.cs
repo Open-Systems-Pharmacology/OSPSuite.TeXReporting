@@ -13,7 +13,7 @@ namespace OSPSuite.TeXReporting.TeX
       /// <returns>TEX chunk.</returns>
       public static string Fraction(string numerator, string denominator)
       {
-         return String.Format("\\frac{{{0}}}{{{1}}}", numerator, denominator);
+         return $"\\frac{{{numerator}}}{{{denominator}}}";
       }
 
       /// <summary>
@@ -24,7 +24,7 @@ namespace OSPSuite.TeXReporting.TeX
       /// <returns>TEX chunk.</returns>
       public static string Root(string magnitude, string term)
       {
-         return String.Format("\\sqrt[{0}]{{{1}}}", magnitude, term);         
+         return $"\\sqrt[{magnitude}]{{{term}}}";         
       }
 
       /// <summary>
@@ -36,7 +36,7 @@ namespace OSPSuite.TeXReporting.TeX
       /// <returns></returns>
       public static string Sum(string start, string end, string term)
       {
-         return String.Format("\\sum_{{{0}}}^{{{1}}} {2}", start, end, term);         
+         return $"\\sum_{{{start}}}^{{{end}}} {term}";         
       }
 
 

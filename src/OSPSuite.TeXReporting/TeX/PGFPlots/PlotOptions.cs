@@ -305,12 +305,7 @@ namespace OSPSuite.TeXReporting.TeX.PGFPlots
 
          addSeparator(text);
          text.AppendFormat(FORMAT_STRING2, "mark options",
-                           string.Format("{0}, {1}, {2}", getLineStyleText(MarkStyle),
-                                         String.IsNullOrEmpty(MarkColor) ? Color : MarkColor,
-                                         String.Format(FORMAT_STRING, "fill",
-                                                       String.IsNullOrEmpty(MarkFillColor)
-                                                          ? String.IsNullOrEmpty(MarkColor) ? Color : MarkColor
-                                                          : MarkFillColor)));          
+            $"{getLineStyleText(MarkStyle)}, {(String.IsNullOrEmpty(MarkColor) ? Color : MarkColor)}, {String.Format(FORMAT_STRING, "fill", String.IsNullOrEmpty(MarkFillColor) ? String.IsNullOrEmpty(MarkColor) ? Color : MarkColor : MarkFillColor)}");          
 
          if (ErrorBars & !ErrorGeometric)
          {

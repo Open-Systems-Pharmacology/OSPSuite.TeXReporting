@@ -80,7 +80,7 @@ namespace OSPSuite.TeXReporting.TeX
 
       public static string FixedColumnWidth(string length)
       {
-         return String.Format("p{{{0}}}", length);
+         return $"p{{{length}}}";
       }
 
       /// <summary>
@@ -100,7 +100,7 @@ namespace OSPSuite.TeXReporting.TeX
       /// <returns>TEX chunk.</returns>
       private static string CLine(int startCol, int endCol)
       {
-         return String.Format("\\cline{{{0}-{1}}}", startCol.ToString(CultureInfo.InvariantCulture), endCol.ToString(CultureInfo.InvariantCulture));
+         return $"\\cline{{{startCol.ToString(CultureInfo.InvariantCulture)}-{endCol.ToString(CultureInfo.InvariantCulture)}}}";
       }
 
       /// <summary>
@@ -188,7 +188,7 @@ namespace OSPSuite.TeXReporting.TeX
       /// <returns>TEX chunk.</returns>
       private static string shortStack(ColumnAlignments alignment, string values)
       {
-         return String.Format("\\shortstack[{0}]{{\\\\{1}}}", alignment, values);
+         return $"\\shortstack[{alignment}]{{\\\\{values}}}";
       }
     
       /// <summary>
@@ -248,12 +248,12 @@ namespace OSPSuite.TeXReporting.TeX
          for (int i = 0; i < colFieldNames.Count; i++)
          {
             var fieldName = colFieldNames[i];
-            var columnName = String.Format("{{{0}}}", converter.StringToTeX(fieldName));
+            var columnName = $"{{{converter.StringToTeX(fieldName)}}}";
             if (pivotData.Table.Columns.Contains(fieldName))
             {
                columnName += TNote(pivotData.Table.Columns[fieldName], tableNotes);
                var unit = pivotData.Table.Columns[fieldName].GetUnit();
-               if (!String.IsNullOrEmpty(unit)) columnName = String.Format("{0} [{1}]", columnName, converter.StringToTeX(unit));
+               if (!String.IsNullOrEmpty(unit)) columnName = $"{columnName} [{converter.StringToTeX(unit)}]";
             }
             if (headerRow.Length > 0)
                headerRow.Append(multiColumn(pivotInfo.RowFields.Count, ColumnAlignments.r,
@@ -311,12 +311,12 @@ namespace OSPSuite.TeXReporting.TeX
                   {
                      var datafieldName = converter.StringToTeX(datafield);
                      datafieldName += TNote(pivotData.Table.Columns[datafield], tableNotes);
-                     headerRow.Append(Helper.Bold(String.Format("({0})", datafieldName)));
+                     headerRow.Append(Helper.Bold($"({datafieldName})"));
                   }
                   if (pivotData.Table.Columns.Contains(datafield))
                   {
                      var unit = pivotData.Table.Columns[datafield].GetUnit();
-                     if (!String.IsNullOrEmpty(unit)) headerRow.Append(Helper.Bold(String.Format(" [{0}]", converter.StringToTeX(unit))));
+                     if (!String.IsNullOrEmpty(unit)) headerRow.Append(Helper.Bold($" [{converter.StringToTeX(unit)}]"));
                   }
                }
          headerRow.Append(Helper.LineBreak());
@@ -588,7 +588,7 @@ namespace OSPSuite.TeXReporting.TeX
          //see http://TeX.stackexchange.com/questions/108634/why-is-the-tnote-of-my-threeparttables-table-cheekily-protruding-how-can-the-w
          //return String.Format("\\tnote{{{0}}}", String.Join(", ", symbols));
 
-         return String.Format("\\textsuperscript{{\\TPTtagStyle{{{0}}}}}", String.Join(", ", symbols));
+         return $"\\textsuperscript{{\\TPTtagStyle{{{String.Join(", ", symbols)}}}}}";
       }
 
       /// <summary>
@@ -613,7 +613,7 @@ namespace OSPSuite.TeXReporting.TeX
 
       private static string tableNote(char symbol, string text)
       {
-         return String.Format("\\item [{0}] {1}\n", symbol, text);
+         return $"\\item [{symbol}] {text}\n";
       }
 
       private static string phantomline()
@@ -651,7 +651,7 @@ namespace OSPSuite.TeXReporting.TeX
 
       private static string setPagebreakDesirability(PageBreakDesirability pagebreakDesirability)
       {
-         return string.Format("\\pagebreak[{0}]", (int)pagebreakDesirability);
+         return $"\\pagebreak[{(int) pagebreakDesirability}]";
       }
 
       private static string createRow(DataRowView row, Dictionary<string, char> tableNotes, ITeXConverter converter, ITeXBuilderRepository builderRepository, DataRelation relation = null, int? level=null)

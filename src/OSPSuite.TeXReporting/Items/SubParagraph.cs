@@ -21,7 +21,7 @@ namespace OSPSuite.TeXReporting.Items
          if (name.EndsWith("\n"))
             return name;
 
-         return string.Format("{0}\n", name);
+         return $"{name}\n";
       }
    }
 }
