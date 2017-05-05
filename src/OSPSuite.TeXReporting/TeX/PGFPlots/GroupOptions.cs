@@ -73,12 +73,12 @@ namespace OSPSuite.TeXReporting.TeX.PGFPlots
             case LegendOptions.LegendPositions.OuterSouthWest:
                positionText.AppendFormat("(group c1r{0}.south west)", rows);
                positionText.Append(getVerticalSpace(-verticalSpaceinRows));
-               optionsText = string.Format("yshift=-{0}, anchor=north west", everyAxisTitleShift);
+               optionsText = $"yshift=-{everyAxisTitleShift}, anchor=north west";
                break;
             case LegendOptions.LegendPositions.OuterSouthEast:
                positionText.AppendFormat("(group c{0}r{1}.south east)", columns, rows);
                positionText.Append(getVerticalSpace(-verticalSpaceinRows));
-               optionsText = string.Format("yshift=-{0}, anchor=north east", everyAxisTitleShift);
+               optionsText = $"yshift=-{everyAxisTitleShift}, anchor=north east";
                break;
             case LegendOptions.LegendPositions.NorthWest:
                positionText.AppendFormat("(group c1r1.north west)");
@@ -86,11 +86,11 @@ namespace OSPSuite.TeXReporting.TeX.PGFPlots
                break;
             case LegendOptions.LegendPositions.OuterNorthWest:
                positionText.AppendFormat("(group c1r1.north west)");
-               optionsText = string.Format("left, xshift=-{0}, anchor=north east", everyAxisTitleShift);
+               optionsText = $"left, xshift=-{everyAxisTitleShift}, anchor=north east";
                break;
             case LegendOptions.LegendPositions.OuterNorthEast:
                positionText.AppendFormat("(group c{0}r1.north east)", columns);
-               optionsText = string.Format("right, xshift={0}, anchor=north west", everyAxisTitleShift);
+               optionsText = $"right, xshift={everyAxisTitleShift}, anchor=north west";
                break;
             case LegendOptions.LegendPositions.NorthEast:
                positionText.AppendFormat("(group c{0}r1.north east)", columns);
@@ -99,7 +99,7 @@ namespace OSPSuite.TeXReporting.TeX.PGFPlots
             case LegendOptions.LegendPositions.OuterNorth:
                positionText.Append(getPositionCenter(columns, "north"));
                positionText.Append(getVerticalSpace(4));
-               optionsText = string.Format("yshift=-{0}, anchor=south", everyAxisTitleShift);
+               optionsText = $"yshift=-{everyAxisTitleShift}, anchor=south";
                break;
             case LegendOptions.LegendPositions.SouthEast:
                positionText.AppendFormat("(group c{0}r{1}.south east)", columns, rows);
@@ -108,7 +108,7 @@ namespace OSPSuite.TeXReporting.TeX.PGFPlots
             case LegendOptions.LegendPositions.OuterSouth:
                positionText.Append(getPositionCenter(columns, rows, "south"));
                positionText.Append(getVerticalSpace(-verticalSpaceinRows));
-               optionsText = string.Format("below, yshift=-{0}", everyAxisTitleShift);
+               optionsText = $"below, yshift=-{everyAxisTitleShift}";
                break;
             case LegendOptions.LegendPositions.SouthWest:
                positionText.AppendFormat("(group c1r{0}.south west)", rows);
@@ -116,11 +116,11 @@ namespace OSPSuite.TeXReporting.TeX.PGFPlots
                break;
             case LegendOptions.LegendPositions.South:
                positionText.Append(getPositionCenter(columns, rows, "south"));
-               optionsText = string.Format("yshift={0}, anchor=south", everyAxisTitleShift);
+               optionsText = $"yshift={everyAxisTitleShift}, anchor=south";
                break;
             case LegendOptions.LegendPositions.North:
                positionText.Append(getPositionCenter(columns, "north"));
-               optionsText = string.Format("yshift=-{0}, anchor=north", everyAxisTitleShift);
+               optionsText = $"yshift=-{everyAxisTitleShift}, anchor=north";
                break;
             default:
                throw new ArgumentOutOfRangeException();
@@ -140,14 +140,14 @@ namespace OSPSuite.TeXReporting.TeX.PGFPlots
       {
          if (columns > 1)
             return string.Format("(group c1r1.{1})!0.5!(group c{0}r1.{1})", columns, position);
-         return string.Format("(group c1r1.{0})", position);
+         return $"(group c1r1.{position})";
       }
 
       private static string getPositionCenter(int columns, int rows, string position)
       {
          if (columns > 1)
             return string.Format("(group c1r{1}.{2})!0.5!(group c{0}r{1}.{2})", columns, rows, position);
-         return string.Format("(group c1r{0}.{1})", rows, position);
+         return $"(group c1r{rows}.{position})";
       }
 
    }
@@ -210,7 +210,7 @@ namespace OSPSuite.TeXReporting.TeX.PGFPlots
       private string getPositionCenterNorth()
       {
          if (Columns > 1)
-            return string.Format("(group c1r1.north)!0.5!(group c{0}r1.north)", Columns);
+            return $"(group c1r1.north)!0.5!(group c{Columns}r1.north)";
          return string.Format("(group c1r1.north)");
       }
 
@@ -230,7 +230,7 @@ namespace OSPSuite.TeXReporting.TeX.PGFPlots
          var position = getPositionCenterNorth();
          position += addVerticalSpace(1);
 
-         return String.Format("\\node ({0}) at (${1}$) [above, yshift=\\pgfkeysvalueof{{/pgfplots/every axis title shift}}] {{{2}}};\n", Helper.Marker(), position, title);
+         return $"\\node ({Helper.Marker()}) at (${position}$) [above, yshift=\\pgfkeysvalueof{{/pgfplots/every axis title shift}}] {{{title}}};\n";
       }
 
       public override string ToString()
@@ -270,7 +270,7 @@ namespace OSPSuite.TeXReporting.TeX.PGFPlots
             options.AppendFormat(FORMAT_STRING, "yticklabels at", getGroupYPositionsText(YTickLabelsAt));
          }
 
-         return String.Format("group style={{{0}}}{1}", options, GroupLegendOptions);
+         return $"group style={{{options}}}{GroupLegendOptions}";
       }
 
       private void addSeparator(StringBuilder text)

@@ -57,12 +57,12 @@ namespace OSPSuite.TeXReporting.TeX
       /// <returns>TEX chunk.</returns>
       private static string includeGraphics(string options, string fileName, ITeXConverter converter)
       {
-         return String.Format("\\includegraphics[{0}]{{{1}}}\n", options, converter.FilePathToTeX(fileName));
+         return $"\\includegraphics[{options}]{{{converter.FilePathToTeX(fileName)}}}\n";
       }
 
       internal static string InlineGraphic(string fileName, ITeXConverter converter)
       {
-         return includeGraphics(string.Format("height={0}",Helper.BaseLineSkip(1)), fileName, converter);
+         return includeGraphics($"height={Helper.BaseLineSkip(1)}", fileName, converter);
       }
 
       /// <summary>
@@ -85,10 +85,8 @@ namespace OSPSuite.TeXReporting.TeX
          tex.Append(Helper.Centering());
 
          var options = landscape
-                          ? String.Format("max height={0}, max width={1}", Helper.GetLengthInPercentageOfTextWidth(90),
-                                          Helper.GetLengthInPercentageOfTextHeight(100))
-                          : String.Format("max height={0}, max width={1}", Helper.GetLengthInPercentageOfTextHeight(90),
-                                          Helper.GetLengthInPercentageOfTextWidth(100));
+                          ? $"max height={Helper.GetLengthInPercentageOfTextWidth(90)}, max width={Helper.GetLengthInPercentageOfTextHeight(100)}"
+            : $"max height={Helper.GetLengthInPercentageOfTextHeight(90)}, max width={Helper.GetLengthInPercentageOfTextWidth(100)}";
 
          options += ", keepaspectratio";
          tex.Append(includeGraphics(options, fileName, converter));
@@ -101,7 +99,7 @@ namespace OSPSuite.TeXReporting.TeX
 
       private static string setSubfolderForPlots()
       {
-         return String.Format("\\tikzsetexternalprefix{{{0}/}}\n", Constants.ArtifactFolderForPlots);
+         return $"\\tikzsetexternalprefix{{{Constants.ArtifactFolderForPlots}/}}\n";
       }
 
       /// <summary>

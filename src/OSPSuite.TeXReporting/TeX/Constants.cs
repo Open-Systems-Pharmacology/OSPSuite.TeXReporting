@@ -28,7 +28,7 @@ namespace OSPSuite.TeXReporting.TeX
       {
          public static string CouldNotCreateReport(string workingFolder)
          {
-            return string.Format("Report could not be created. Please see log for details located under '{0}'", workingFolder);
+            return $"Report could not be created. Please see log for details located under '{workingFolder}'";
          }
       }
    }

@@ -173,7 +173,7 @@ namespace OSPSuite.TeXReporting
 
       public string TemplateName
       {
-         get { return string.Format("{0}.tex", new DirectoryInfo(TemplateFolder).Name); }
+         get { return $"{new DirectoryInfo(TemplateFolder).Name}.tex"; }
       }
 
       public string TemplateFullPath

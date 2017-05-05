@@ -91,7 +91,7 @@ namespace OSPSuite.TeXReporting.TeX.PGFPlots
                anchor = "west";
                break;
          }
-         return String.Format("{{anchor={0}}}", anchor);
+         return $"{{anchor={anchor}}}";
       }
 
       /// <summary>
@@ -229,7 +229,7 @@ namespace OSPSuite.TeXReporting.TeX.PGFPlots
          addSeparator(options);
          options.Append(getLegendPositionText());
 
-         return  String.Format("legend style={{{0}}}", options);
+         return $"legend style={{{options}}}";
       }
 
       private void addSeparator(StringBuilder text)

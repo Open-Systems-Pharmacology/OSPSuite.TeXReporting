@@ -51,8 +51,8 @@
       <HintPath>..\..\packages\OSPSuite.BDDHelper.2.0.0.1\lib\net45\OSPSuite.BDDHelper.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="OSPSuite.Utility, Version=2.0.0.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\OSPSuite.Utility.2.0.0.1\lib\net45\OSPSuite.Utility.dll</HintPath>
+    <Reference Include="OSPSuite.Utility, Version=2.0.0.5, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\OSPSuite.Utility.2.0.0.5\lib\net45\OSPSuite.Utility.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -74,6 +74,7 @@
     <Compile Include="BoxPlotSpecs.cs" />
     <Compile Include="CastleWindsorContainer.cs" />
     <Compile Include="ChapterSpecs.cs" />
+    <Compile Include="ColorTextSpecs.cs" />
     <Compile Include="ComplexReportSpecs.cs" />
     <Compile Include="ConstantsForSpecs.cs" />
     <Compile Include="ContextForReporting.cs" />

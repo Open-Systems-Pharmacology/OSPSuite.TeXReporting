@@ -33,8 +33,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="OSPSuite.Utility, Version=2.0.0.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\OSPSuite.Utility.2.0.0.1\lib\net45\OSPSuite.Utility.dll</HintPath>
+    <Reference Include="OSPSuite.Utility, Version=2.0.0.5, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\OSPSuite.Utility.2.0.0.5\lib\net45\OSPSuite.Utility.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -55,6 +55,7 @@
     <Compile Include="Builder\BarPlotTeXBuilder.cs" />
     <Compile Include="Builder\BuildTracker.cs" />
     <Compile Include="Builder\ChunkBuilderNotFoundException.cs" />
+    <Compile Include="Builder\ColorTextTeXBuilder.cs" />
     <Compile Include="Builder\DataTableTeXBuilder.cs" />
     <Compile Include="Builder\FigureTeXBuilder.cs" />
     <Compile Include="Builder\GroupPlotTeXBuilder.cs" />
@@ -91,6 +92,7 @@
     <Compile Include="Items\BaseItem.cs" />
     <Compile Include="Items\BasePlot.cs" />
     <Compile Include="Items\Chapter.cs" />
+    <Compile Include="Items\ColorText.cs" />
     <Compile Include="Items\Figure.cs" />
     <Compile Include="Items\GroupPlot.cs" />
     <Compile Include="Items\IBasePlot.cs" />
