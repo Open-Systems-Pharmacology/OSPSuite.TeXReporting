@@ -171,15 +171,9 @@ namespace OSPSuite.TeXReporting
             throw new OSPSuiteException($"The template folder '{folder.FullName}' does not contain the expected layout tex file '{TemplateName}'");
       }
 
-      public string TemplateName
-      {
-         get { return $"{new DirectoryInfo(TemplateFolder).Name}.tex"; }
-      }
+      public string TemplateName => $"{new DirectoryInfo(TemplateFolder).Name}.tex";
 
-      public string TemplateFullPath
-      {
-         get { return Path.Combine(TemplateFolder, TemplateName); }
-      }
+      public string TemplateFullPath => Path.Combine(TemplateFolder, TemplateName);
 
       public enum ReportColorStyles
       {

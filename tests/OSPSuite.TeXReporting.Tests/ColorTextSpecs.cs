@@ -19,8 +19,6 @@ namespace OSPSuite.TeXReporting.Tests
          _objectsToReport.Add(new ColorText("Red", Color.Red));
          _objectsToReport.Add(new LineBreak());
          _objectsToReport.Add(new ColorText("Blue", Color.Blue));
-
-         _settings.DeleteWorkingDir = false;
       }
 
       [Observation]

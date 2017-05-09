@@ -1,4 +1,5 @@
-﻿using OSPSuite.BDDHelper;
+﻿using System.Drawing;
+using OSPSuite.BDDHelper;
 using OSPSuite.TeXReporting.Items;
 
 namespace OSPSuite.TeXReporting.Tests
@@ -24,6 +25,12 @@ namespace OSPSuite.TeXReporting.Tests
                new Paragraph("Second Paragraph"),
                new SubSection("Second Subsection"),
                new Chapter("Chapter2.2"),
+               new SubSection("Font Styles"),
+               new ColorText("Aqua", Color.Aqua),
+               new LineBreak(),
+               new ColorText("Red", Color.Red),
+               new LineBreak(),
+               new ColorText("Blue", Color.Blue),
                new Chapter("Chapter2.3") {CreateTableOfContentsEntry = false},
                new Chapter("Chapter2.4") {TableOfContentsTitle = "Amazing 2.4"},
             });
