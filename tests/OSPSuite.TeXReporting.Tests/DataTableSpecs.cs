@@ -17,7 +17,7 @@ namespace OSPSuite.TeXReporting.Tests
          for (int i = 0; i < 40; i++)
          {
             var row = dataTable.NewRow();
-            row["Name"] = "Value {0}".FormatWith(i);
+            row["Name"] = $"Value {i}";
             row["Value"] = i;
             dataTable.Rows.Add(row);
          }

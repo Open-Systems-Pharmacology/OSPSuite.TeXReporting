@@ -17,7 +17,7 @@ namespace OSPSuite.TeXReporting.Builder
 
       private string colorizedText(string text, Color color)
       {
-         return color.IsEmpty ? text : $"\\definecolor{{theColor}}{{rgb}}{{{color.R},{color.G}, {color.B}}}\\textcolor{{theColor}}{{{text}}}";
+         return color.IsEmpty ? text : $"\\definecolor{{theColor}}{{RGB}}{{{color.R},{color.G},{color.B}}}\\textcolor{{theColor}}{{{text}}}";
       }
    }
 }

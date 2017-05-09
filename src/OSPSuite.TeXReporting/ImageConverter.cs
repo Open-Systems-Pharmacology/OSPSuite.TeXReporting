@@ -33,7 +33,7 @@ namespace OSPSuite.TeXReporting
       public async Task<string> ConvertPDF(string pdfFileFullPath, ImageTypes imageType, int resolution = 144)
       {
          if (!File.Exists(pdfFileFullPath))
-            throw new OSPSuiteException("The pdf file '{0}' does not exist!".FormatWith(pdfFileFullPath));
+            throw new OSPSuiteException($"The pdf file '{pdfFileFullPath}' does not exist!");
 
          if (Path.GetExtension(pdfFileFullPath) != ".pdf")
             throw new OSPSuiteException("The file must be a pdf file and have the extension .pdf.");
@@ -43,16 +43,16 @@ namespace OSPSuite.TeXReporting
 
          var workingDir = Path.GetDirectoryName(pdfFileFullPath);
          if (String.IsNullOrEmpty(workingDir))
-            throw new OSPSuiteException("The fileName '{0}' was spefified without full path which is needed.".FormatWith(pdfFileFullPath));
+            throw new OSPSuiteException($"The fileName '{pdfFileFullPath}' was spefified without full path which is needed.");
 
          var pdfFile = Path.GetFileName((pdfFileFullPath));
          if (String.IsNullOrEmpty(pdfFile))
-            throw new OSPSuiteException("The fileName '{0}' is empty. A pdf file must be specified.".FormatWith(pdfFileFullPath));
+            throw new OSPSuiteException($"The fileName '{pdfFileFullPath}' is empty. A pdf file must be specified.");
 
 
          //check write access to working directory
          if (!FileHelper.HasWriteAccessToFolder(workingDir))
-            throw new OSPSuiteException("The working directory '{0}' is write protected or does not exist.".FormatWith(workingDir));
+            throw new OSPSuiteException($"The working directory '{workingDir}' is write protected or does not exist.");
 
          await runConverter(pdfFile, workingDir, resolution, imageType);
 
