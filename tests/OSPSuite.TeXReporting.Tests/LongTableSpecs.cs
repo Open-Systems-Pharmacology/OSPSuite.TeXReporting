@@ -20,7 +20,7 @@ namespace OSPSuite.TeXReporting.Tests
          for (int i = 0; i < 100; i++)
          {
             var row = dataTable.NewRow();
-            row["Name"] = "Value {0}".FormatWith(i);
+            row["Name"] = $"Value {i}";
             row["Value"] = i;
             row["Text"] = "This is a longer text which could make trouble if it occurs in a table, because if there is a longer text this text might need to get broken into multiple lines.";
             dataTable.Rows.Add(row);
@@ -29,7 +29,7 @@ namespace OSPSuite.TeXReporting.Tests
          for (int i = 0; i < 10; i++)
          {
             var row = dataTable.NewRow();
-            row["Name"] = "Value 1e-{0}".FormatWith(i);
+            row["Name"] = $"Value 1e-{i}";
             row["Value"] = Math.Pow(10, (-1) * i);
             row["Text"] = "This is a longer text which could make trouble if it occurs in a table, because if there is a longer text this text might need to get broken into multiple lines.";
             dataTable.Rows.Add(row);

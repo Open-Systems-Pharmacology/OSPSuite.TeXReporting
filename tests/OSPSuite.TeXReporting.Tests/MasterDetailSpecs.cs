@@ -41,7 +41,7 @@ namespace OSPSuite.TeXReporting.Tests
          {
             var masterRow = masterTable.NewRow();
             masterRow["ID"] = i;
-            masterRow["Name"] = "Value {0}".FormatWith(i);
+            masterRow["Name"] = $"Value {i}";
             masterRow["Value"] = i / (2 + i);
             masterRow["Category"] = (i % 2 == 0) ? "Category A" : "Category B";
             masterTable.Rows.Add(masterRow);

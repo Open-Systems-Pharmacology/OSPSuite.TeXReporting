@@ -164,11 +164,11 @@ namespace OSPSuite.TeXReporting
 
          var folder = new DirectoryInfo(TemplateFolder);
          if (!folder.Exists)
-            throw new OSPSuiteException("The template folder '{0}' does not exists. Please Specifies an existing template folder.".FormatWith(folder.FullName));
+            throw new OSPSuiteException($"The template folder '{folder.FullName}' does not exists. Please Specifies an existing template folder.");
 
          var templateFullPath = Path.Combine(TemplateFolder, TemplateName);
          if (!FileHelper.FileExists(templateFullPath))
-            throw new OSPSuiteException("The template folder '{0}' does not contain the expected layout tex file '{1}'".FormatWith(folder.FullName, TemplateName));
+            throw new OSPSuiteException($"The template folder '{folder.FullName}' does not contain the expected layout tex file '{TemplateName}'");
       }
 
       public string TemplateName

@@ -24,7 +24,7 @@ namespace OSPSuite.TeXReporting.TeX
       public async Task<string> CompileTex(string texFileFullPath, int numberOfCompilations)
       {
          if (!File.Exists(texFileFullPath))
-            throw new OSPSuiteException("The tex file '{0}' does not exist!".FormatWith(texFileFullPath));
+            throw new OSPSuiteException($"The tex file '{texFileFullPath}' does not exist!");
 
          if (Path.GetExtension(texFileFullPath) != ".tex")
             throw new OSPSuiteException("The file must be a tex file and have the extension .TeX.");
@@ -35,17 +35,17 @@ namespace OSPSuite.TeXReporting.TeX
 
          var workingDir = Path.GetDirectoryName(texFileFullPath);
          if (string.IsNullOrEmpty(workingDir))
-            throw new OSPSuiteException("The fileName '{0}' was spefified without full path which is needed.".FormatWith(texFileFullPath));
+            throw new OSPSuiteException($"The fileName '{texFileFullPath}' was spefified without full path which is needed.");
 
          var texFile = Path.GetFileName((texFileFullPath));
          if (string.IsNullOrEmpty(texFile))
-            throw new OSPSuiteException("The fileName '{0}' is empty. A tex file must be specified.".FormatWith(texFileFullPath));
+            throw new OSPSuiteException($"The fileName '{texFileFullPath}' is empty. A tex file must be specified.");
 
          var texFileName = FileHelper.FileNameFromFileFullPath(texFileFullPath);
 
          //check write access to working directory
          if (!FileHelper.HasWriteAccessToFolder(workingDir))
-            throw new OSPSuiteException("The working directory '{0}' is write protected or does not exist.".FormatWith(workingDir));
+            throw new OSPSuiteException($"The working directory '{workingDir}' is write protected or does not exist.");
 
          var pathVariable = Environment.GetEnvironmentVariable("Path");
          if (!string.IsNullOrEmpty(pathVariable))
