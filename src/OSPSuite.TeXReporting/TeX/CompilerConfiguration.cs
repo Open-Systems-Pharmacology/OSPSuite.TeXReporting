@@ -25,30 +25,21 @@ namespace OSPSuite.TeXReporting.TeX
       /// <summary>
       ///    This is the complete path to the mixtek texify executable.
       /// </summary>
-      public static string Texify
-      {
-         get
-         {
-            var texify = Path.Combine(MikTexExecutablePath, "texify.exe");
-            if (!FileHelper.FileExists(texify))
-               throw new MikTexInstallationException();
-            return texify;
-         }
-      }
+      public static string Texify=> retrieveFileOrThrow("texify.exe");
 
       /// <summary>
       ///    This is the complete path to the miktex ghostview executable.
       /// </summary>
-      public static string MGS
+      public static string MGS => retrieveFileOrThrow("mgs.exe");
+
+      private static string retrieveFileOrThrow(string fileName)
       {
-         get
-         {
-            var texify = Path.Combine(MikTexExecutablePath, "mgs.exe");
-            if (!FileHelper.FileExists(texify))
-               throw new MikTexInstallationException();
-            return texify;
-         }
-      }
+         var file = Path.Combine(MikTexExecutablePath, fileName);
+         if (FileHelper.FileExists(file))
+            return file;
+
+          throw new MikTexInstallationException();
+      } 
 
       public static string MikTexExecutablePath => Path.Combine(MikTEXPortablePath, "miktex", "bin");
 
@@ -62,7 +53,11 @@ namespace OSPSuite.TeXReporting.TeX
                if (!string.IsNullOrEmpty(path))
                   return path;
 
-               return Environment.GetEnvironmentVariable(MIK_TEX_INSTALL_DIR);
+               path = Environment.GetEnvironmentVariable(MIK_TEX_INSTALL_DIR);
+               if (!string.IsNullOrEmpty(path))
+                  return path;
+
+               throw new MikTexInstallationException();
             }
             catch (Exception e)
             {
