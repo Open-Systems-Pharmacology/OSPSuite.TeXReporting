@@ -15,7 +15,7 @@
     <tags>open-systems-pharmacology</tags>
   </metadata>
   <files>
-    <file src="..\Templates\**\*.*" target="OSPSuite.TeXReporting\Templates" />
+    <file src="..\Templates\**\*.*" target="OSPSuite.TeXReporting\TeXTemplates" />
     <file src="bin\$configuration$\$id$.pdb" target="lib\net45\" />
   </files>
 </package>
