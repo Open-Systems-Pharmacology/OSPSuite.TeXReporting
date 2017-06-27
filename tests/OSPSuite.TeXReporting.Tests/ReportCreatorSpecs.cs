@@ -65,11 +65,13 @@ namespace OSPSuite.TeXReporting.Tests
       {
          base.Context();
          _parameter = new Parameter();
+         var builder = A.Fake<ITeXBuilder>();
+         A.CallTo(() => _builderRepository.BuilderFor(_parameter)).Returns(builder);
       }
 
       protected override void Because()
       {
-         sut.ReportToPDF(_pdfReportFullPath, _reportSettings, new[] {_parameter});
+         sut.ReportToPDF(_pdfReportFullPath, _reportSettings, _parameter).Wait();
       }
 
       [Observation]
@@ -110,7 +112,7 @@ namespace OSPSuite.TeXReporting.Tests
 
       protected override void Because()
       {
-         sut.ReportToPDF(_pdfReportFullPath, _reportSettings, new[] {_parameter});
+         sut.ReportToPDF(_pdfReportFullPath, _reportSettings, new[] { _parameter });
       }
 
       [Observation]
