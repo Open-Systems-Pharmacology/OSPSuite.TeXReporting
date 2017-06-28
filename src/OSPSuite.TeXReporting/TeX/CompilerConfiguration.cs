@@ -2,30 +2,33 @@
 using System.IO;
 using Microsoft.Win32;
 using OSPSuite.Utility;
+using OSPSuite.Utility.Exceptions;
 
 namespace OSPSuite.TeXReporting.TeX
 {
+   public class MikTexInstallationException : OSPSuiteException
+   {
+      private const string ERROR_MESSAGE = "There is something wrong with the Open Systems Pharmacology - MiKTeX installation.";
+
+      public MikTexInstallationException(string message) : base($"{ERROR_MESSAGE}\n{message}")
+      {
+      }
+
+      public MikTexInstallationException(Exception inner) : base(ERROR_MESSAGE, inner)
+      {
+      }
+   }
+
    public static class CompilerConfiguration
    {
       private const string MIK_TEX_REGISTRY_PATH = @"HKEY_LOCAL_MACHINE\SOFTWARE\Open Systems Pharmacology\MikTex";
       private const string MIK_TEX_INSTALL_DIR = "MIK_TEX_INSTALL_DIR";
-      private const string ERROR_MESSAGE = "There is something wrong with the Open Systems Pharmacology - MiKTeX installation.";
-
-      public class MikTexInstallationException : Exception
-      {
-         public MikTexInstallationException() : base(ERROR_MESSAGE)
-         {
-         }
-
-         public MikTexInstallationException(Exception inner) : base(ERROR_MESSAGE, inner)
-         {
-         }
-      }
+      private const string MIK_TEX_INSTALLATION_NOT_FOUND = "MiKTex installation not found";
 
       /// <summary>
       ///    This is the complete path to the mixtek texify executable.
       /// </summary>
-      public static string Texify=> retrieveFileOrThrow("texify.exe");
+      public static string Texify => retrieveFileOrThrow("texify.exe");
 
       /// <summary>
       ///    This is the complete path to the miktex ghostview executable.
@@ -38,12 +41,12 @@ namespace OSPSuite.TeXReporting.TeX
          if (FileHelper.FileExists(file))
             return file;
 
-          throw new MikTexInstallationException();
-      } 
+         throw new MikTexInstallationException(MIK_TEX_INSTALLATION_NOT_FOUND);
+      }
 
-      public static string MikTexExecutablePath => Path.Combine(MikTEXPortablePath, "miktex", "bin");
+      public static string MikTexExecutablePath => Path.Combine(mikTEXPortablePath, "miktex", "bin");
 
-      public static string MikTEXPortablePath
+      private static string mikTEXPortablePath
       {
          get
          {
@@ -57,7 +60,7 @@ namespace OSPSuite.TeXReporting.TeX
                if (!string.IsNullOrEmpty(path))
                   return path;
 
-               throw new MikTexInstallationException();
+               throw new MikTexInstallationException(MIK_TEX_INSTALLATION_NOT_FOUND);
             }
             catch (Exception e)
             {
