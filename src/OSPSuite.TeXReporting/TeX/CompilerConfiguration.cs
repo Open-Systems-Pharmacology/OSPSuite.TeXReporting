@@ -13,10 +13,6 @@ namespace OSPSuite.TeXReporting.TeX
       public MikTexInstallationException(string message) : base($"{ERROR_MESSAGE}\n{message}")
       {
       }
-
-      public MikTexInstallationException(Exception inner) : base(ERROR_MESSAGE, inner)
-      {
-      }
    }
 
    public static class CompilerConfiguration
@@ -50,22 +46,15 @@ namespace OSPSuite.TeXReporting.TeX
       {
          get
          {
-            try
-            {
-               var path = (string) Registry.GetValue(MIK_TEX_REGISTRY_PATH, "InstallDir", null);
-               if (!string.IsNullOrEmpty(path))
-                  return path;
+            var path = (string) Registry.GetValue(MIK_TEX_REGISTRY_PATH, "InstallDir", null);
+            if (!string.IsNullOrEmpty(path))
+               return path;
 
-               path = Environment.GetEnvironmentVariable(MIK_TEX_INSTALL_DIR);
-               if (!string.IsNullOrEmpty(path))
-                  return path;
+            path = Environment.GetEnvironmentVariable(MIK_TEX_INSTALL_DIR);
+            if (!string.IsNullOrEmpty(path))
+               return path;
 
-               throw new MikTexInstallationException(MIK_TEX_INSTALLATION_NOT_FOUND);
-            }
-            catch (Exception e)
-            {
-               throw new MikTexInstallationException(e);
-            }
+            throw new MikTexInstallationException(MIK_TEX_INSTALLATION_NOT_FOUND);
          }
       }
    }
