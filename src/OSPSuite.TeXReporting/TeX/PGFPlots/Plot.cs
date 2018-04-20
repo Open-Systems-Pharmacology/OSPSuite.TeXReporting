@@ -18,7 +18,9 @@ namespace OSPSuite.TeXReporting.TeX.PGFPlots
       public PlotOptions Options;
       public string LegendEntry;
       internal bool LogarithmicXAxis;
+
       internal bool LogarithmicYAxis;
+
       // some properties for error shading
       // opacity of area and limit lines
       // width of limit line
@@ -33,7 +35,7 @@ namespace OSPSuite.TeXReporting.TeX.PGFPlots
       {
          if (Options.ShadedErrorBars)
             return String.Format("smooth, {0}, draw=none, area legend, stack plots=y, fill={0}, opacity={1}",
-                                 Options.Color, Options.Opacity);
+               Options.Color, Options.Opacity);
          return Options.ToString();
       }
 
@@ -91,6 +93,7 @@ namespace OSPSuite.TeXReporting.TeX.PGFPlots
          {
             addValue(text, point.X, point.Y);
          }
+
          text.Append("};\n");
       }
 
@@ -101,8 +104,8 @@ namespace OSPSuite.TeXReporting.TeX.PGFPlots
          {
             if (point.errX != null || point.errY != null)
                text.AppendFormat("({0}, {1}) +- ({2},{3})\n",
-                                 convert(point.X), convert(point.Y),
-                                 convert(point.errX), convert(point.errY));
+                  convert(point.X), convert(point.Y),
+                  convert(point.errX), convert(point.errY));
             else
                addValue(text, point.X, point.Y);
          }
@@ -113,26 +116,26 @@ namespace OSPSuite.TeXReporting.TeX.PGFPlots
       private void plotGeometricErrorBars(StringBuilder text)
       {
          text.AppendFormat("\\addplot [{0},{1}] coordinates {{\n", Options,
-                           "forget plot, error bars/.cd, error bar style={solid},y dir=plus, y explicit");
+            "forget plot, error bars/.cd, error bar style={solid},y dir=plus, y explicit");
          foreach (var point in Coordinates)
          {
             if (point.errX != null || point.errY != null)
                text.AppendFormat("({0}, {1}) +- ({2},{3})\n",
-                                 convert(point.X), convert(point.Y),
-                                 convert(point.errX), convert(point.Y*errorFor(point.errY) - point.Y));
+                  convert(point.X), convert(point.Y),
+                  convert(point.errX), convert(point.Y * errorFor(point.errY) - point.Y));
             else
                addValue(text, point.X, point.Y);
          }
 
          text.Append("};\n");
          text.AppendFormat("\\addplot [{0},{1}] coordinates {{\n", Options,
-                           "error bars/.cd, error bar style={solid},y dir=minus, y explicit");
+            "error bars/.cd, error bar style={solid},y dir=minus, y explicit");
          foreach (var point in Coordinates)
          {
             if (point.errX != null || point.errY != null)
                text.AppendFormat("({0}, {1}) +- ({2},{3})\n",
-                                 convert(point.X), convert(point.Y),
-                                 convert(point.errX), convert(point.Y - point.Y/errorFor(point.errY)));
+                  convert(point.X), convert(point.Y),
+                  convert(point.errX), convert(point.Y - point.Y / errorFor(point.errY)));
             else
                addValue(text, point.X, point.Y);
          }
@@ -198,19 +201,20 @@ namespace OSPSuite.TeXReporting.TeX.PGFPlots
          text.AppendFormat(
             "\\addplot [{0}, draw=none, area legend, fill={0}, opacity={1}{2}] \n",
             Options.Color, Options.Opacity, Options.ShowInLegend ? string.Empty : ", forget plot");
-         var areaCoordinates =
-            new List<Coordinate>(lowerCoordinates).Concat(upperCoordinates.OrderByDescending(x => x.X))
-                                                  .Concat(new List<Coordinate> {lowerCoordinates.First()});
+         var areaCoordinates = new List<Coordinate>(lowerCoordinates);
+         areaCoordinates.AddRange(upperCoordinates.OrderByDescending(x => x.X));
+
+         if (lowerCoordinates.Any())
+            areaCoordinates.Add(lowerCoordinates.First());
+
          plotCoordinates(text, areaCoordinates);
          text.Append(" \\closedcycle;\n");
-
       }
-
 
       private void plotCoordinates(StringBuilder text, IEnumerable<Coordinate> coordinates)
       {
          text.Append("coordinates {");
-         foreach ( var point in coordinates) 
+         foreach (var point in coordinates)
             addValue(text, point.X, point.Y);
          text.Append("}");
       }
@@ -237,8 +241,10 @@ namespace OSPSuite.TeXReporting.TeX.PGFPlots
                default:
                   throw new ArgumentOutOfRangeException();
             }
+
             coordinates.Add(new Coordinate(point.X, yValue));
          }
+
          return coordinates;
       }
 
@@ -275,10 +281,12 @@ namespace OSPSuite.TeXReporting.TeX.PGFPlots
             }
             else
             {
-               yValue = (float)point.errY2 - point.errY ?? 0F;
+               yValue = (float) point.errY2 - point.errY ?? 0F;
             }
+
             coordinates.Add(new Coordinate(point.X, yValue));
          }
+
          return coordinates;
       }
 
@@ -303,8 +311,10 @@ namespace OSPSuite.TeXReporting.TeX.PGFPlots
                default:
                   throw new ArgumentOutOfRangeException();
             }
+
             coordinates.Add(new Coordinate(point.X, yValue));
          }
+
          return coordinates;
       }
 
