@@ -4,7 +4,6 @@ using System.IO;
 using System.Threading.Tasks;
 using OSPSuite.Utility;
 using OSPSuite.Utility.Exceptions;
-using OSPSuite.Utility.Extensions;
 
 namespace OSPSuite.TeXReporting.TeX
 {
