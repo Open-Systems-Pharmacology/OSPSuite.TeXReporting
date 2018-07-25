@@ -17,7 +17,8 @@ namespace OSPSuite.TeXReporting.TeX
 
    public static class CompilerConfiguration
    {
-      private const string MIK_TEX_REGISTRY_PATH = @"HKEY_LOCAL_MACHINE\SOFTWARE\Open Systems Pharmacology\MikTex";
+      private const string MIK_TEX_REGISTRY_PATH_X_86 = @"HKEY_LOCAL_MACHINE\SOFTWARE\Open Systems Pharmacology\MikTex";
+      private const string MIK_TEX_REGISTRY_PATH_X_64 = @"HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Open Systems Pharmacology\MikTex";
       private const string MIK_TEX_INSTALL_DIR = "MIK_TEX_INSTALL_DIR";
       private const string MIK_TEX_INSTALLATION_NOT_FOUND = "MiKTex installation not found";
 
@@ -40,16 +41,23 @@ namespace OSPSuite.TeXReporting.TeX
          throw new MikTexInstallationException(MIK_TEX_INSTALLATION_NOT_FOUND);
       }
 
-      public static string MikTexExecutablePath => Path.Combine(mikTEXPortablePath, "miktex", "bin");
+      public static string MikTexExecutablePath => Path.Combine(MikTexPortablePath, "miktex", "bin");
 
-      private static string mikTEXPortablePath
+      private static string MikTexPortablePath
       {
          get
          {
-            var path = (string) Registry.GetValue(MIK_TEX_REGISTRY_PATH, "InstallDir", null);
+            //32 bit install with 32 bit version of MikTex (or 64 bit install with 64bit version of MikTex)
+            var path = (string) Registry.GetValue(MIK_TEX_REGISTRY_PATH_X_86, "InstallDir", null);
             if (!string.IsNullOrEmpty(path))
                return path;
 
+            //64 bit install with 32 bit version of MikTex 
+            path = (string)Registry.GetValue(MIK_TEX_REGISTRY_PATH_X_64, "InstallDir", null);
+            if (!string.IsNullOrEmpty(path))
+               return path;
+
+            //Maybe environment variable was provided?
             path = Environment.GetEnvironmentVariable(MIK_TEX_INSTALL_DIR);
             if (!string.IsNullOrEmpty(path))
                return path;
