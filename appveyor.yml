@@ -5,7 +5,7 @@ environment:
   app_version: '3.0.0'
   MIK_TEX_INSTALL_DIR: 'C:\MikTex\'
 
-version: '%app_version%.{build}'
+version: '$(app_version).{build}'
 
 assembly_info:
   patch: true
