@@ -39,7 +39,7 @@ namespace OSPSuite.TeXReporting
          if (string.IsNullOrEmpty(pdfFileName))
             throw new OSPSuiteException("The pdf file name is empty. A pdf file must be specified.");
 
-         if (!FileHelper.HasWriteAccessToFolder(outputDir))
+         if (!AccessHelper.HasWriteAccessToFolder(outputDir))
             throw new OSPSuiteException("The output directory is write protected or does not exist.");
 
          //create a unique working dir

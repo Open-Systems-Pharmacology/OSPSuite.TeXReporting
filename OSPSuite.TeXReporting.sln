@@ -1,8 +1,9 @@
-﻿Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26730.16
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29025.244
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OSPSuite.TeXReporting", "src\OSPSuite.TeXReporting\OSPSuite.TeXReporting.csproj", "{4EFB5757-F1B4-4E57-99ED-DBFB57C7E991}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OSPSuite.TeXReporting", "src\OSPSuite.TeXReporting\OSPSuite.TeXReporting.csproj", "{4EFB5757-F1B4-4E57-99ED-DBFB57C7E991}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OSPSuite.TeXReporting.Tests", "tests\OSPSuite.TeXReporting.Tests\OSPSuite.TeXReporting.Tests.csproj", "{BAAB09FC-03C6-4C25-9CA3-5B9476C6E59D}"
 EndProject
@@ -29,5 +30,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {222A164B-9E91-435E-A513-713EA441CCBE}
 	EndGlobalSection
 EndGlobal

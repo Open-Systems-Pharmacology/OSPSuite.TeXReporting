@@ -43,7 +43,7 @@ namespace OSPSuite.TeXReporting.TeX
          var texFileName = FileHelper.FileNameFromFileFullPath(texFileFullPath);
 
          //check write access to working directory
-         if (!FileHelper.HasWriteAccessToFolder(workingDir))
+         if (!AccessHelper.HasWriteAccessToFolder(workingDir))
             throw new OSPSuiteException($"The working directory '{workingDir}' is write protected or does not exist.");
 
          var pathVariable = Environment.GetEnvironmentVariable("Path");
