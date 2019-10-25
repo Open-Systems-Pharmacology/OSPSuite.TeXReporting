@@ -51,7 +51,7 @@ namespace OSPSuite.TeXReporting
 
 
          //check write access to working directory
-         if (!FileHelper.HasWriteAccessToFolder(workingDir))
+         if (!AccessHelper.HasWriteAccessToFolder(workingDir))
             throw new OSPSuiteException($"The working directory '{workingDir}' is write protected or does not exist.");
 
          await runConverter(pdfFile, workingDir, resolution, imageType);
