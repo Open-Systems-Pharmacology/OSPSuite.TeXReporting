@@ -30,10 +30,12 @@ install:
 build:
   publish_nuget: true
   verbosity: minimal
+  publish_nuget_symbols: true
+  project: OSPSuite.TeXReporting.sln
 
 test:
   assemblies:
-    - OSPSuite.TEXReporting.Tests.dll
+    - OSPSuite.TeXReporting.Tests.dll
 
 skip_commits:
   files:
