@@ -40,6 +40,13 @@
       <PackagePath></PackagePath>
     </None>
   </ItemGroup>
+  
+   <ItemGroup>
+    <None Include="..\Templates\**\*.*">
+      <Pack>True</Pack>
+      <PackagePath>OSPSuite.TeXReporting\TeXTemplates</PackagePath>
+    </None>
+  </ItemGroup>
 
   <ItemGroup>
     <Reference Include="System.Data.DataSetExtensions" />
