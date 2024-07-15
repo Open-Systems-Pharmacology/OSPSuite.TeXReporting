@@ -10,7 +10,7 @@ namespace OSPSuite.TeXReporting.Tests
          get
          {
             var rootDir = AppDomain.CurrentDomain.BaseDirectory;
-            return Path.GetFullPath(rootDir + @"\..\..\..\..\src\Templates");
+            return Path.GetFullPath(rootDir + @"\..\..\..\..\..\src\Templates");
          }
       }
 
