@@ -1,0 +1,61 @@
+name: Build PR
+
+on:
+  pull_request:
+    branches:
+    - main
+
+env:
+  MAJOR: 3
+  MINOR: 0
+  MINORMINOR: 1 
+  RUN: ${{ github.run_number }}
+  MIK_TEX_INSTALL_DIR: 'C:\MikTex\'
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          submodules: 'true'
+
+      - name: Add msbuild to PATH
+        uses: microsoft/setup-msbuild@v2
+
+      - name: Restore dependencies
+        run: |
+          nuget sources add -username Open-Systems-Pharmacology -password ${{ secrets.GITHUB_TOKEN }} -name OSP-GitHub-Packages -source "https://nuget.pkg.github.com/Open-Systems-Pharmacology/index.json"
+          nuget restore
+
+      - name: define env variables
+        run: |
+          echo "APP_VERSION=${{ env.MAJOR }}.${{ env.MINOR }}.${{ env.MINORMINOR }}.${{ env.RUN }}" | Out-File -FilePath $env:GITHUB_ENV -Append
+
+      - name: Install MikTex
+        run: |
+          (new-object net.webclient).DownloadFile('https://github.com/Open-Systems-Pharmacology/MiKTeX/releases/download/v2.9.3/MikTex.2.9.3.msi', 'C:\\MikTex.msi')
+          Start-Process msiexec.exe -ArgumentList /i, C:\MikTex.msi, /quiet, /qn, /norestart, INSTALLDIR=${{env.MIK_TEX_INSTALL_DIR}} -Wait
+        shell: pwsh
+
+      - name: Build
+        run: msbuild OSPSuite.TeXReporting.sln /p:Version=${{env.APP_VERSION}}
+
+      - name : Test
+        run: dotnet test .\tests\**\bin\Debug\net8\OSPSuite*Tests.dll -v normal --no-build  --logger:"html;LogFileName=../testLog_Windows.html"
+
+      - name: Pack the project
+        run: dotnet pack .\OSPSuite.TeXReporting.sln --no-build --no-restore -o ./ -p:PackageVersion=${{env.APP_VERSION}} --configuration=Debug
+
+      - name: Push nupkg as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: OSPSuite.TeXReporting
+          path: ./*.nupkg
+
+      - name: Push test log as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: testLog_Windows
+          path: ./testLog*.html
